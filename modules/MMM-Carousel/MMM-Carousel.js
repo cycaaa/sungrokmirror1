@@ -1,5 +1,6 @@
 /*global Module, MM, setInterval */
 /* jshint esversion:6 */
+var Carousel;
 Module.register('MMM-Carousel', {
     defaults: {
         slideTransitionSpeed: 1500,
@@ -26,7 +27,9 @@ Module.register('MMM-Carousel', {
             enabled: true
         }
     },
-
+    start(){
+        Carousel = this;
+    },
     keyBindings: {
         mode: "DEFAULT",
         map: { NextSlide: "ArrowRight", PrevSlide: "ArrowLeft", Slide0: "Home" }
@@ -53,6 +56,7 @@ Module.register('MMM-Carousel', {
                 this.restartTimer();
             }
         }
+        this.sendNotification('Modules All Change');
     },
 
     notificationReceived: function(notification, payload, sender) {
@@ -65,10 +69,11 @@ Module.register('MMM-Carousel', {
                 KeyHandler.register(this.name, {
                     validKeyPress: (kp) => {
                         this.validKeyPress(kp); // Your Key Press Function
+                    
                     }
                 });
-                this.keyHandler = KeyHandler.create(this.name, this.keyBindings);
             }
+            
 
             // Initially, all modules are hidden except the first and any ignored modules
             // We start by getting a list of all of the modules in the transition cycle
@@ -133,6 +138,7 @@ Module.register('MMM-Carousel', {
                 } catch (err) {
                     console.warn("Could not navigate to slide " + payload.slide);
                 }
+                
             }
         }
     },
@@ -169,7 +175,9 @@ Module.register('MMM-Carousel', {
             // We set a timer to cause the page transitions
             // If we're in slides mode and the timer is set to 0, we only use manual transitions
             this.transitionTimer = setInterval(this.manualTransition, timer);
+            
         }
+        
     },
 
     moduleTransition: function(goToIndex = -1, goDirection = 0, goToSlide = undefined) {
@@ -216,6 +224,7 @@ Module.register('MMM-Carousel', {
                 if (wrapper.length > 0) {
                     return wrapper[0];
                 }
+                
             }
         };
 
@@ -258,10 +267,11 @@ Module.register('MMM-Carousel', {
                         if (typeof mods[s].position === "string") {
                             // Check if we were given a position to change, if so, move the module to the new position
                             selectWrapper(mods[s].position).appendChild(document.getElementById(this[i].identifier));
+                            
                         }
                         // Finally show the module
                         this[i].show(this.slideTransitionSpeed, { lockString: "mmmc" });
-                        show = true;
+                        show = true;                      
                         break;
                     }
                 }
@@ -272,7 +282,6 @@ Module.register('MMM-Carousel', {
                 this[i].hide(0, { lockString: "mmmc" });
             }
         }
-
         // Update the DOM if we're using it.
         if ((this.slides !== undefined) && (this.showPageIndicators || this.showPageControls)) {
             var slider = document.getElementById("slider_" + this.currentIndex);
@@ -307,7 +316,6 @@ Module.register('MMM-Carousel', {
             }
         }
     },
-
     restartTimer: function() {
         if (this.config.transitionInterval > 0) {
             // Restart the timer
@@ -321,6 +329,7 @@ Module.register('MMM-Carousel', {
         // Perform the manual transitio
         this.manualTransition(slideNum);
         this.restartTimer();
+        this.sendNotification('Modules All Change');
     },
 
     getStyles: function() {
@@ -352,7 +361,6 @@ Module.register('MMM-Carousel', {
             var paginationWrapper1 = document.createElement("div");
             paginationWrapper1.className = "slider-pagination2";
 
-
             for (var i = 0; i < Object.keys(this.config.slides).length; i++) {
                 var input = document.createElement("input");
                 input.type = "radio";
@@ -362,13 +370,15 @@ Module.register('MMM-Carousel', {
                 input.onchange = makeOnChangeHandler(i);
                 paginationWrapper.appendChild(input);
             }
+            
 
             if (this.config.showPageIndicators) {
-                for (i = 0; i < Object.keys(this.config.slides).length; i++) {
+                for (var i = 0; i < Object.keys(this.config.slides).length; i++) {
                     var label = document.createElement("label");
                     label.setAttribute("for", "slider_" + i);
                     label.id = "sliderLabel_" + i;
                     paginationWrapper.appendChild(label);
+       
                 }
             }
             div.appendChild(paginationWrapper);
@@ -395,13 +405,16 @@ Module.register('MMM-Carousel', {
                         pCtrlLabelWrapper.id = "sliderPrevBtn_" + j;
                         pCtrlLabelWrapper.innerHTML = '<i class="fa fa-arrow-circle-left"></i>';
                         previousWrapper.appendChild(pCtrlLabelWrapper);
+                        
                     }
                 }
 
                 div.appendChild(nextWrapper);
                 div.appendChild(previousWrapper);
+                
             }
             return div;
         }
     },
+    
 });

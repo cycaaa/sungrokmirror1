@@ -8,16 +8,10 @@
  *
  * MIT Licensed.
  */
-
+var modulebarr;
 //var request = require('request');
 
 Module.register("MMM-Modulebar",{
-	
-	notificationReceived: function(notification, payload) {
-		if(notification === "DOM_OBJECTS_CREATED"){
-			this.hide()
-		}
-	},
 	
 	requiresVersion: "2.1.0",
 	
@@ -53,6 +47,9 @@ Module.register("MMM-Modulebar",{
 			}
 		}
 	},
+	start(){
+		modulebarr = this;	
+	},
 	
 
     // Define required styles.
@@ -69,7 +66,8 @@ Module.register("MMM-Modulebar",{
 		// Sends each button to the "createButton" function be created.
 		for (var num in this.config.buttons) {
 			menu.appendChild(this.createButton(this, num, this.config.buttons[num], this.config.picturePlacement));
-        }
+		}
+		
         return menu;
     },
 
@@ -86,10 +84,13 @@ Module.register("MMM-Modulebar",{
         item.style.minHeight = self.config.minHeight;
 		// Collects all modules loaded in MagicMirror.
 		var modules = MM.getModules();
+		
+
 		// When a button is clicked, the module either gets hidden or shown depending on current module status.
 		item.addEventListener("click", function () {
 			// Lists through all modules for testing.
 			for (var i = 0; i < modules.length; i++) {
+				
 				// Check if the curent module is the one.
 				if (modules[i].name === data.module) {
 					// Splits out the module number of the module with the same name.
@@ -109,6 +110,10 @@ Module.register("MMM-Modulebar",{
 								// Prints the visited hideURL.
 								console.log("Visiting hide URL: "+data.hideUrl);
 							}
+							for (var k = 3; k < 7; k++){
+								console.log("Hiding opend "+ modules[k].name+" ID: "+idnr[1]);
+								modules[k].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+							}
 						}
 						else {
 							// Check if there is a "showURL" defined.
@@ -122,21 +127,31 @@ Module.register("MMM-Modulebar",{
 								console.log("Hiding opend "+ modules[1].name+" ID: "+idnr[1]);
 								modules[1].hide(self.config.animationSpeed, {force: self.config.allowForce});	
 								
+								
+								for (var k = 3; k < 7; k++){
+									console.log("Hiding opend "+ modules[k].name+" ID: "+idnr[1]);
+									modules[k].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+								}
+
 								console.log("Showing "+modules[i].name+" ID: "+idnr[1]);	
-							
 								setTimeout(function(){
 									modules[2].show(self.config.animationSpeed, {force: self.config.allowForce});
-									},500);
+								},500);
 							}
 							else {
 								console.log("Hiding opend "+ modules[2].name+" ID: "+idnr[1]);			
 								modules[2].hide(self.config.animationSpeed, {force: self.config.allowForce});
 
+								for (var k = 3; k < 7; k++){
+									console.log("Hiding opend "+ modules[k].name+" ID: "+idnr[1]);
+									modules[k].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+								}
+
 								console.log("Showing "+modules[i].name+" ID: "+idnr[1]);	
-								
 								setTimeout(function(){
 								modules[1].show(self.config.animationSpeed, {force: self.config.allowForce});
 								},500);
+								
 							}
 						}
 					}

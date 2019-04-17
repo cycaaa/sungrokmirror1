@@ -8,7 +8,7 @@
  *
  * MIT Licensed.
  */
-
+var abc;
 //var request = require('request');
 
 Module.register("MMM-Modulebar1",{
@@ -29,7 +29,7 @@ Module.register("MMM-Modulebar1",{
         // The direction of the bar. Options: row, column, row-reverse or column-reverse
         direction: "column-reverse",
 		// The speed of the hide and show animation.
-		animationSpeed: 1000,
+		animationSpeed: 500,
         // The default button 1. Add your buttons in the config.
 		buttons: {
             "1": {
@@ -42,19 +42,22 @@ Module.register("MMM-Modulebar1",{
 			},
 			
 			"2": {
-				module: "MMM-iFrame",
+				module: "MMM-iFrame3",
 				text:   "남자헤어",
 				symbol: "clock-o"
 			},
 
 			"3": {
-				module: "MMM-iFrame1",
+				module: "MMM-iFrame4",
 				text:   "여자헤어",
 				symbol: "clock-o"
 			},
 
 		}
-    },
+	},
+	start(){
+		abc = this;
+	},
 
     // Define required styles.
 	getStyles: function(){
@@ -71,14 +74,10 @@ Module.register("MMM-Modulebar1",{
 		for (var num in this.config.buttons) {
 			menu.appendChild(this.createButton(this, num, this.config.buttons[num], this.config.picturePlacement));
 		}
-		if(notification === "DOM_OBJECTS_CREATED"){
-			this.hide()
-		}
-	
 
-        return menu;
-    },
 
+		return menu;
+	},
 	// Creates the buttons.
     createButton: function (self, num, data, placement) {
 		// Creates the span elemet to contain all the buttons.
@@ -103,19 +102,7 @@ Module.register("MMM-Modulebar1",{
 					// Checks if idnum is set in config.js. If it is, it only hides that module, if not hides all modules with the same name.
 					if (idnr[1] == data.idnum || data.idnum == null) {
 						// Check if the module is hidden.
-						if (modules[i].hidden) {
-							// Check if there is a "showURL" defined.
-							if (data.showUrl != null) {
-								// Visiting the show URL.
-								fetch(data.showUrl);
-								// Prints the visited hideURL.
-								console.log("Visiting show URL: "+data.showUrl);
-							}
-							// Shows the module.
-							modules[i].show(self.config.animationSpeed, {force: self.config.allowForce});
-							// Prints in the console what just happend (adding the ID). 
-							console.log("Showing "+modules[i].name+" ID: "+idnr[1]);
-						}else{
+						if (!modules[i].hidden) {
 							// Hides the module.
 							modules[i].hide(self.config.animationSpeed, {force: self.config.allowForce});
 							// Prints in the console what just happend (adding the ID). 
@@ -126,6 +113,33 @@ Module.register("MMM-Modulebar1",{
 								fetch(data.hideUrl);
 								// Prints the visited hideURL.
 								console.log("Visiting hide URL: "+data.hideUrl);
+							}
+						}
+						else {
+							// Check if there is a "showURL" defined.
+							if (data.showUrl != null) {
+								// Visiting the show URL.
+								fetch(data.showUrl);
+								// Prints the visited hideURL.
+								console.log("Visiting show URL: "+data.showUrl);
+							}
+							if (modules[i].name == 'MMM-iFrame3') {
+								console.log("Hiding opend "+ modules[4].name+" ID: "+idnr[1]);
+								modules[4].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+								
+								console.log("Showing "+modules[3].name+" ID: "+idnr[1]);	
+								setTimeout(function(){
+									modules[3].show(self.config.animationSpeed, {force: self.config.allowForce});
+								},500);
+							}
+							else {
+								console.log("Hiding opend "+ modules[3].name+" ID: "+idnr[1]);			
+								modules[3].hide(self.config.animationSpeed, {force: self.config.allowForce});
+								
+								console.log("Showing "+modules[4].name+" ID: "+idnr[1]);	
+								setTimeout(function(){
+									modules[4].show(self.config.animationSpeed, {force: self.config.allowForce});
+								},500);
 							}
 						}
 					}
@@ -185,11 +199,18 @@ Module.register("MMM-Modulebar1",{
             }
 			// Adds the text to the item.
             item.appendChild(text);
-        }
+		}
+		
 		// All done. :)
         return item;
-	}
+	},
+	notificationReceived: function(notification, payload){
+		Log.info(this.name + " - received norification : " + notification);
 
+		if(notification === 'Modules All Change'){
+			this.hide();
+		}
+	}
 });	
 
 

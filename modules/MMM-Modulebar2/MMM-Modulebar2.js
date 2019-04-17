@@ -29,7 +29,7 @@ Module.register("MMM-Modulebar2",{
         // The direction of the bar. Options: row, column, row-reverse or column-reverse
         direction: "column-reverse",
 		// The speed of the hide and show animation.
-		animationSpeed: 1000,
+		animationSpeed: 500,
         // The default button 1. Add your buttons in the config.
 		buttons: {
             "1": {
@@ -42,13 +42,13 @@ Module.register("MMM-Modulebar2",{
 			},
 			
 			"2": {
-				module: "MMM-iFrame",
+				module: "MMM-iFrame5",
 				text:   "남자헤어",
 				symbol: "clock-o"
 			},
 
 			"3": {
-				module: "MMM-iFrame1",
+				module: "MMM-iFrame6",
 				text:   "여자헤어",
 				symbol: "clock-o"
 			},
@@ -71,8 +71,7 @@ Module.register("MMM-Modulebar2",{
 		// Sends each button to the "createButton" function be created.
 		for (var num in this.config.buttons) {
 			menu.appendChild(this.createButton(this, num, this.config.buttons[num], this.config.picturePlacement));
-        }
-
+		}
         return menu;
     },
 
@@ -99,18 +98,9 @@ Module.register("MMM-Modulebar2",{
 					var idnr = modules[i].data.identifier.split("_");
 					// Checks if idnum is set in config.js. If it is, it only hides that module, if not hides all modules with the same name.
 					if (idnr[1] == data.idnum || data.idnum == null) {
-						// Check if the module is hidden.
-						if (modules[i].hidden) {
-							// Check if there is a "showURL" defined.
-							if (data.showUrl != null) {
-								// Visiting the show URL.
-								fetch(data.showUrl);
-								// Prints the visited hideURL.
-								console.log("Visiting show URL: "+data.showUrl);
-							}
-							//한 프레임에 두가지이상의 모듈이 뜨지 않게 하기.
-						
-						}else{
+						// Check if the module is hidden.						if (!modules[i].hidden) {
+							// Hides the module.
+						if (!modules[i].hidden) {
 							// Hides the module.
 							modules[i].hide(self.config.animationSpeed, {force: self.config.allowForce});
 							// Prints in the console what just happend (adding the ID). 
@@ -121,6 +111,33 @@ Module.register("MMM-Modulebar2",{
 								fetch(data.hideUrl);
 								// Prints the visited hideURL.
 								console.log("Visiting hide URL: "+data.hideUrl);
+							}
+						}
+						else {
+							// Check if there is a "showURL" defined.
+							if (data.showUrl != null) {
+							// Visiting the show URL.
+								fetch(data.showUrl);
+								// Prints the visited hideURL.
+								console.log("Visiting show URL: "+data.showUrl);
+							}
+							if (modules[i].name == 'MMM-iFrame5') {
+								console.log("Hiding opend "+ modules[6].name+" ID: "+idnr[1]);
+								modules[6].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+								
+								console.log("Showing "+modules[5].name+" ID: "+idnr[1]);	
+								setTimeout(function(){
+									modules[5].show(self.config.animationSpeed, {force: self.config.allowForce});
+								},500);
+							}
+							else {
+								console.log("Hiding opend "+ modules[5].name+" ID: "+idnr[1]);			
+								modules[5].hide(self.config.animationSpeed, {force: self.config.allowForce});
+								
+								console.log("Showing "+modules[6].name+" ID: "+idnr[1]);	
+								setTimeout(function(){
+									modules[6].show(self.config.animationSpeed, {force: self.config.allowForce});
+								},500);
 							}
 						}
 					}
@@ -183,7 +200,15 @@ Module.register("MMM-Modulebar2",{
         }
 		// All done. :)
         return item;
-    }
+	},
+	
+	notificationReceived: function(notification, payload){
+		Log.info(this.name + " - received norification : " + notification);
+
+		if(notification === 'Modules All Change'){
+			this.hide();
+		}
+	}
 });	
 
 
