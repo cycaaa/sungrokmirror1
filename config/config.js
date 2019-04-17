@@ -40,9 +40,10 @@ var config = {
 			module: "MMM-Modulebar1",
 			position: "bottom_left", // This can be any of the regions.
 			header: "남자헤어", // Optional
+			
 			classes: "default everyone", // Optional
 			config: {
-		
+				hidden : "true",
 				// See 'Configuration options' for more information.
 			}
 		},
@@ -50,14 +51,15 @@ var config = {
 			module: "MMM-Modulebar2",
 			position: "bottom_left", // This can be any of the regions.
 			header: "여자헤어", // Optional
+			
 			classes: "default everyone", // Optional
 			config: {
-		
+				hidden : "true",
 				// See 'Configuration options' for more information.
 			}
 		},
 		{
-			module: 'MMM-iFrame1',
+			module: 'MMM-iFrame3',
 			position: 'bottom_right',	// This can be any of the regions.
 			hide : "true",
 			config: {
@@ -66,13 +68,11 @@ var config = {
 					updateInterval: 0.5 * 60 * 1000, // rotate URLs every 30 seconds
 					width: "3500", // width of iframe
 					height: "2000", // height of iframe
-					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe
-					
+					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe		
 			}
-			
 		},
 		{
-			module: 'MMM-iFrame',
+			module: 'MMM-iFrame4',
 			position: 'bottom_right',	// This can be any of the regions.
 			hide : "true",
 			config: {
@@ -81,10 +81,34 @@ var config = {
 					updateInterval: 0.5 * 60 * 1000, // rotate URLs every 30 seconds
 					width: "3500", // width of iframe
 					height: "2000", // height of iframe
-					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe
-					
+					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe		
 			}
-			
+		},
+		{
+			module: 'MMM-iFrame5',
+			position: 'bottom_right',	// This can be any of the regions.
+			hide : "true",
+			config: {
+				// See 'Configuration options' for more information.
+					url: ["http://s3.us-east-2.amazonaws.com/beautymirror.com/demo/index.html"],  // as many URLs you want or you can just ["ENTER IN URL"] if single URL.
+					updateInterval: 0.5 * 60 * 1000, // rotate URLs every 30 seconds
+					width: "3500", // width of iframe
+					height: "2000", // height of iframe
+					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe		
+			}
+		},
+		{
+			module: 'MMM-iFrame6',
+			position: 'bottom_right',	// This can be any of the regions.
+			hide : "true",
+			config: {
+				// See 'Configuration options' for more information.
+					url: ["http://s3.us-east-2.amazonaws.com/beautymirror.com/demo/index.html"],  // as many URLs you want or you can just ["ENTER IN URL"] if single URL.
+					updateInterval: 0.5 * 60 * 1000, // rotate URLs every 30 seconds
+					width: "3500", // width of iframe
+					height: "2000", // height of iframe
+					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe		
+			}
 		},
 		{
 			module: "updatenotification",
@@ -95,40 +119,8 @@ var config = {
 			position: "top_left"
 		},
 		{
-			module: "calendar",
-			header: "US Holidays",
-			position: "top_left",
-			config: {
-				calendars: [
-					{
-						symbol: "calendar-check",
-						url: "webcal://www.calendarlabs.com/templates/ical/US-Holidays.ics"
-					}
-				]
-			}
-		},
-		{
 			module: "compliments",
 			position: "lower_third"
-		},
-		{
-			module: "currentweather",
-			position: "top_right",
-			config: {
-				location: "New York",
-				locationID: "",  //ID from http://bulk.openweathermap.org/sample/; unzip the gz file and find your city
-				appid: "YOUR_OPENWEATHER_API_KEY"
-			}
-		},
-		{
-			module: "weatherforecast",
-			position: "top_right",
-			header: "Weather Forecast",
-			config: {
-				location: "New York",
-				locationID: "5128581",  //ID from https://openweathermap.org/city
-				appid: "YOUR_OPENWEATHER_API_KEY"
-			}
 		},
 		{
 			module: "newsfeed",
@@ -153,8 +145,8 @@ var config = {
 				showPageIndicators: true,
 				showPageControls: true,
 				slides: {
-					main: ['calendar', 'compliments', 'currentweather'],
-					"Slide 2": ['weatherforecast', 'MMM-Trello', 'planetrise', 'newsfeed'],
+					main: ['compliments'],
+					"Slide 2": ['MMM-Trello', 'planetrise', 'newsfeed'],
 					"Slide 3": ['MMM-Modulebar', 'MMM-Modulebar1', 'MMM-Modulebar2', 'MMM-iFrame', 'MMM-iFrame1'],
 					"Slide 4": ['']
 				},
