@@ -110,7 +110,7 @@ Module.register("MMM-Modulebar",{
 								// Prints the visited hideURL.
 								console.log("Visiting hide URL: "+data.hideUrl);
 							}
-							for (var k = 3; k < 7; k++){
+							for (var k = 3; k < 17; k++){
 								console.log("Hiding opend "+ modules[k].name+" ID: "+idnr[1]);
 								modules[k].hide(self.config.animationSpeed, {force: self.config.allowForce});	
 							}
@@ -128,7 +128,7 @@ Module.register("MMM-Modulebar",{
 								modules[1].hide(self.config.animationSpeed, {force: self.config.allowForce});	
 								
 								
-								for (var k = 3; k < 7; k++){
+								for (var k = 3; k < 17; k++){
 									console.log("Hiding opend "+ modules[k].name+" ID: "+idnr[1]);
 									modules[k].hide(self.config.animationSpeed, {force: self.config.allowForce});	
 								}
@@ -142,7 +142,7 @@ Module.register("MMM-Modulebar",{
 								console.log("Hiding opend "+ modules[2].name+" ID: "+idnr[1]);			
 								modules[2].hide(self.config.animationSpeed, {force: self.config.allowForce});
 
-								for (var k = 3; k < 7; k++){
+								for (var k = 3; k < 17; k++){
 									console.log("Hiding opend "+ modules[k].name+" ID: "+idnr[1]);
 									modules[k].hide(self.config.animationSpeed, {force: self.config.allowForce});	
 								}

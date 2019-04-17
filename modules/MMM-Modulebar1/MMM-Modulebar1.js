@@ -33,22 +33,43 @@ Module.register("MMM-Modulebar1",{
         // The default button 1. Add your buttons in the config.
 		buttons: {
             "1": {
-				// The modules exact name to be affected.
-				module: "clock",
-				// The text to be displayed in the button.
-				text:	"Clock",
-				// Then symbol from font-awesome!
-                symbol: "clock-o"
+				module: "MMM-iFrame3",
+				text:   "남자헤어",
+				symbol: "clock-o"
 			},
 			
 			"2": {
-				module: "MMM-iFrame3",
+				module: "MMM-iFrame4",
 				text:   "남자헤어",
 				symbol: "clock-o"
 			},
 
 			"3": {
-				module: "MMM-iFrame4",
+				module: "MMM-iFrame5",
+				text:   "여자헤어",
+				symbol: "clock-o"
+			},
+
+			"4": {
+				module: "MMM-iFrame6",
+				text:   "여자헤어",
+				symbol: "clock-o"
+			},
+			
+			"5": {
+				module: "MMM-iFrame7",
+				text:   "여자헤어",
+				symbol: "clock-o"
+			},
+
+			"6": {
+				module: "MMM-iFrame8",
+				text:   "여자헤어",
+				symbol: "clock-o"
+			},
+
+			"7": {
+				module: "MMM-iFrame9",
 				text:   "여자헤어",
 				symbol: "clock-o"
 			},
@@ -124,21 +145,74 @@ Module.register("MMM-Modulebar1",{
 								console.log("Visiting show URL: "+data.showUrl);
 							}
 							if (modules[i].name == 'MMM-iFrame3') {
-								console.log("Hiding opend "+ modules[4].name+" ID: "+idnr[1]);
-								modules[4].hide(self.config.animationSpeed, {force: self.config.allowForce});	
 								
+								for(var num=3; num<17; num++ ){
+								console.log("Hiding opend "+ modules[num].name+" ID: "+idnr[1]);
+								modules[num].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+								}
 								console.log("Showing "+modules[3].name+" ID: "+idnr[1]);	
 								setTimeout(function(){
 									modules[3].show(self.config.animationSpeed, {force: self.config.allowForce});
 								},500);
 							}
+							else if (modules[i].name == 'MMM-iFrame4') {
+								for(var num=3; num<17; num++ ){
+									console.log("Hiding opend "+ modules[num].name+" ID: "+idnr[1]);
+									modules[num].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+									}
+									console.log("Showing "+modules[4].name+" ID: "+idnr[1]);	
+									setTimeout(function(){
+										modules[4].show(self.config.animationSpeed, {force: self.config.allowForce});
+									},500);
+							}
+							else if (modules[i].name == 'MMM-iFrame5') {
+								for(var num=3; num<17; num++ ){
+									console.log("Hiding opend "+ modules[num].name+" ID: "+idnr[1]);
+									modules[num].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+									}
+									console.log("Showing "+modules[5].name+" ID: "+idnr[1]);	
+									setTimeout(function(){
+										modules[5].show(self.config.animationSpeed, {force: self.config.allowForce});
+									},500);
+							}
+							else if (modules[i].name == 'MMM-iFrame6') {
+								for(var num=3; num<17; num++ ){
+									console.log("Hiding opend "+ modules[num].name+" ID: "+idnr[1]);
+									modules[num].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+									}
+									console.log("Showing "+modules[6].name+" ID: "+idnr[1]);	
+									setTimeout(function(){
+										modules[6].show(self.config.animationSpeed, {force: self.config.allowForce});
+									},500);
+							}
+							else if (modules[i].name == 'MMM-iFrame7') {
+								for(var num=3; num<17; num++ ){
+									console.log("Hiding opend "+ modules[num].name+" ID: "+idnr[1]);
+									modules[num].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+									}
+									console.log("Showing "+modules[7].name+" ID: "+idnr[1]);	
+									setTimeout(function(){
+										modules[7].show(self.config.animationSpeed, {force: self.config.allowForce});
+									},500);
+							}
+							else if (modules[i].name == 'MMM-iFrame8') {
+								for(var num=3; num<17; num++ ){
+									console.log("Hiding opend "+ modules[num].name+" ID: "+idnr[1]);
+									modules[num].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+									}
+									console.log("Showing "+modules[8].name+" ID: "+idnr[1]);	
+									setTimeout(function(){
+										modules[8].show(self.config.animationSpeed, {force: self.config.allowForce});
+									},500);
+							}
 							else {
-								console.log("Hiding opend "+ modules[3].name+" ID: "+idnr[1]);			
-								modules[3].hide(self.config.animationSpeed, {force: self.config.allowForce});
-								
-								console.log("Showing "+modules[4].name+" ID: "+idnr[1]);	
+								for(var num=3; num<17; num++ ){
+									console.log("Hiding opend "+ modules[num].name+" ID: "+idnr[1]);
+									modules[num].hide(self.config.animationSpeed, {force: self.config.allowForce});	
+									}
+								console.log("Showing "+modules[9].name+" ID: "+idnr[1]);	
 								setTimeout(function(){
-									modules[4].show(self.config.animationSpeed, {force: self.config.allowForce});
+									modules[9].show(self.config.animationSpeed, {force: self.config.allowForce});
 								},500);
 							}
 						}
