@@ -69,12 +69,9 @@ Module.register('MMM-Carousel', {
                 KeyHandler.register(this.name, {
                     validKeyPress: (kp) => {
                         this.validKeyPress(kp); // Your Key Press Function
-                    
                     }
                 });
             }
-            
-
             // Initially, all modules are hidden except the first and any ignored modules
             // We start by getting a list of all of the modules in the transition cycle
             if ((this.config.mode === 'global') || (this.config.mode === 'slides')) {
@@ -86,7 +83,6 @@ Module.register('MMM-Carousel', {
                     }
                 }
             }
-
             let api = {
                 module: "MMM-Carousel",
                 path: "carousel",
@@ -112,9 +108,7 @@ Module.register('MMM-Carousel', {
             }
             this.sendNotification("REGISTER_API", api);
         }
-
         if (this.keyHandler && this.keyHandler.validate(notification, payload)) { return; }
-
         if (notification === "CAROUSEL_NEXT") {
             this.manualTransition(undefined, 1);
             this.restartTimer();
@@ -138,11 +132,9 @@ Module.register('MMM-Carousel', {
                 } catch (err) {
                     console.warn("Could not navigate to slide " + payload.slide);
                 }
-                
             }
         }
     },
-
     setUpTransitionTimers: function(positionIndex) {
         var modules, timer = this.config.transitionInterval;
         modules = MM.getModules().exceptModule(this).filter(function(module) {
@@ -155,22 +147,18 @@ Module.register('MMM-Carousel', {
         if (this.config.mode === 'slides') {
             modules.slides = this.config.slides;
         }
-
         if (positionIndex !== null) {
             if ((this.config[positionIndex].overrideTransitionInterval !== undefined) && (this.config[positionIndex].overrideTransitionInterval > 0)) {
                 timer = this.config[positionIndex].overrideTransitionInterval;
             }
         }
-
         modules.currentIndex = -1;
         modules.showPageIndicators = this.config.showPageIndicators;
         modules.showPageControls = this.config.showPageControls;
         modules.slideTransitionSpeed = this.config.slideTransitionSpeed;
         this.moduleTransition.call(modules);
-
         // Reference to function for manual transitions
         this.manualTransition = this.moduleTransition.bind(modules);
-
         if (this.config.mode !== "slides" || (this.config.mode === "slides" && timer > 0)) {
             // We set a timer to cause the page transitions
             // If we're in slides mode and the timer is set to 0, we only use manual transitions
@@ -267,11 +255,10 @@ Module.register('MMM-Carousel', {
                         if (typeof mods[s].position === "string") {
                             // Check if we were given a position to change, if so, move the module to the new position
                             selectWrapper(mods[s].position).appendChild(document.getElementById(this[i].identifier));
-                            
                         }
                         // Finally show the module
                         this[i].show(this.slideTransitionSpeed, { lockString: "mmmc" });
-                        show = true;                      
+                        show = true;                  
                         break;
                     }
                 }
@@ -330,6 +317,33 @@ Module.register('MMM-Carousel', {
         this.manualTransition(slideNum);
         this.restartTimer();
         this.sendNotification('Modules All Change');
+        this.sendNotification('CHANGE_POSITIONS', 
+        modules = {
+              'MMM-iFrame17':{
+                visible: 'false',
+                position: 'bottom_left',
+              },
+              'MMM-iFrame18':{
+                visible: 'false',
+                position: 'bottom_left',
+              },
+              'MMM-iFrame19':{
+                visible: 'false',
+                position: 'bottom_left',
+              },
+              'MMM-iFrame20':{
+                visible: 'false',
+                position: 'bottom_left',
+              },
+              'MMM-iFrame21':{
+                visible: 'false',
+                position: 'bottom_left',
+              },
+              'MMM-iFrame22':{
+                visible: 'false',
+                position: 'bottom_left',
+              },
+            });
     },
 
     getStyles: function() {
@@ -408,10 +422,8 @@ Module.register('MMM-Carousel', {
                         
                     }
                 }
-
                 div.appendChild(nextWrapper);
                 div.appendChild(previousWrapper);
-                
             }
             return div;
         }
