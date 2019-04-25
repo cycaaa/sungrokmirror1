@@ -28,7 +28,7 @@ var config = {
 	modules: [
 		{
 			module: "MMM-Modulebar",
-			position: "left", // This can be any of the regions.
+			position: "center", // This can be any of the regions.
 			header: "헤어스타일", // Optional
 			classes: "default everyone", // Optional
 			config: {
@@ -38,7 +38,7 @@ var config = {
 		},
 		{
 			module: "MMM-Modulebar1",
-			position: "bottom_left", // This can be any of the regions.
+			position: "center", // This can be any of the regions.
 			header: "남자헤어", // Optional
 			
 			classes: "default everyone", // Optional
@@ -49,7 +49,7 @@ var config = {
 		},
 		{
 			module: "MMM-Modulebar2",
-			position: "bottom_left", // This can be any of the regions.
+			position: "center", // This can be any of the regions.
 			header: "여자헤어", // Optional
 			
 			classes: "default everyone", // Optional
@@ -241,6 +241,97 @@ var config = {
 			}
 		},
 		{
+			module: 'MMM-iFrame17',
+			position: 'bottom_right',	// This can be any of the regions.
+			visible : 'false',
+			config: {
+				// See 'Configuration options' for more information.
+					url: ["http://s3.us-east-2.amazonaws.com/beautymirror.com/demo/index.html"],  // as many URLs you want or you can just ["ENTER IN URL"] if single URL.
+					updateInterval: 0.5 * 60 * 1000, // rotate URLs every 30 seconds
+					width: "3500", // width of iframe
+					height: "2000", // height of iframe
+					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe		
+			}
+		},
+		{
+			module: 'MMM-iFrame18',
+			position: 'bottom_right',	// This can be any of the regions.
+			visible : 'false',
+			config: {
+				// See 'Configuration options' for more information.
+					url: ["http://s3.us-east-2.amazonaws.com/beautymirror.com/demo/index.html"],  // as many URLs you want or you can just ["ENTER IN URL"] if single URL.
+					updateInterval: 0.5 * 60 * 1000, // rotate URLs every 30 seconds
+					width: "3500", // width of iframe
+					height: "2000", // height of iframe
+					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe		
+			}
+		},
+		{
+			module: 'MMM-iFrame19',
+			position: 'bottom_right',	// This can be any of the regions.
+			visible : 'false',
+			config: {
+				// See 'Configuration options' for more information.
+					url: ["http://s3.us-east-2.amazonaws.com/beautymirror.com/demo/index.html"],  // as many URLs you want or you can just ["ENTER IN URL"] if single URL.
+					updateInterval: 0.5 * 60 * 1000, // rotate URLs every 30 seconds
+					width: "3500", // width of iframe
+					height: "2000", // height of iframe
+					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe		
+			}
+		},
+		{
+			module: 'MMM-iFrame20',
+			position: 'bottom_right',	// This can be any of the regions.
+			visible : 'false',
+			config: {
+				// See 'Configuration options' for more information.
+					url: ["http://s3.us-east-2.amazonaws.com/beautymirror.com/demo/index.html"],  // as many URLs you want or you can just ["ENTER IN URL"] if single URL.
+					updateInterval: 0.5 * 60 * 1000, // rotate URLs every 30 seconds
+					width: "3500", // width of iframe
+					height: "2000", // height of iframe
+					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe		
+			}
+		},
+		{
+			module: 'MMM-iFrame21',
+			position: 'bottom_right',	// This can be any of the regions.
+			visible : 'false',
+			config: {
+				// See 'Configuration options' for more information.
+					url: ["http://s3.us-east-2.amazonaws.com/beautymirror.com/demo/index.html"],  // as many URLs you want or you can just ["ENTER IN URL"] if single URL.
+					updateInterval: 0.5 * 60 * 1000, // rotate URLs every 30 seconds
+					width: "3500", // width of iframe
+					height: "2000", // height of iframe
+					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe		
+			}
+		},
+		{
+			module: 'MMM-iFrame22',
+			position: 'bottom_right',	// This can be any of the regions.
+			visible : 'false',
+			config: {
+				// See 'Configuration options' for more information.
+					url: ["http://s3.us-east-2.amazonaws.com/beautymirror.com/demo/index.html"],  // as many URLs you want or you can just ["ENTER IN URL"] if single URL.
+					updateInterval: 0.5 * 60 * 1000, // rotate URLs every 30 seconds
+					width: "3500", // width of iframe
+					height: "2000", // height of iframe
+					frameWidth: "950", // width of embedded iframe, height is beeing calculated by aspect ratio of iframe		
+					hidden : "true",
+			}
+		},
+		{
+			module: "MMM-Modulebar3",
+			position: "top_left", // This can be any of the regions.
+			header: "메뉴선택", // Optional
+			classes: "default everyone", // Optional
+			config: {
+		
+				// See 'Configuration options' for more information.
+			}
+		},
+
+
+		{
 			module: "updatenotification",
 			position: "top_bar"
 		},
@@ -267,6 +358,18 @@ var config = {
 			}
 		},
 		{
+			module: "MMM-Testpython",
+			position: "top_right",
+			config:{
+				foo:"yellow"
+			}
+			
+		},
+		{
+			module: "MMM-Dynamic-Modules",
+		},
+
+		{
 			module: 'MMM-Carousel',
 			position: 'bottom_bar', // Required only for navigation controls
 			config: {
@@ -276,9 +379,9 @@ var config = {
 				showPageControls: true,
 				slides: {
 					main: ['compliments'],
-					"Slide 2": ['MMM-Trello', 'planetrise', 'newsfeed'],
-					"Slide 3": ['MMM-Modulebar', 'MMM-Modulebar1', 'MMM-Modulebar2'],
-					"Slide 4": ['']
+					"Slide 2": ['MMM-iFrame22'],
+					"Slide 3": ['MMM-Modulebar', 'MMM-Modulebar1', 'MMM-Modulebar2', 'MMM-Modulebar3'],
+					"Slide 4": ['MMM-Testpython','MMM-iFrame17','MMM-iFrame18','MMM-iFrame19','MMM-iFrame20','MMM-iFrame21','MMM-iFrame22']
 				},
 				keyBindings: { 
 					enabled: true,
